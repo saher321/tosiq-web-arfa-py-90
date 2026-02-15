@@ -95,14 +95,23 @@ let departmentName = "Design";
 function filterUsers(){
     let searchedText = document.getElementById("searchedText").value;
     
-    const filteredData = users.filter((user) => 
-    {
-        return user.name.match(searchedText) ||
-        user.email.match(searchedText) ||
-        user.designation.match(searchedText) ||
-        user.department.match(searchedText)
-    }
-    )
+    const filteredData = users.filter((user) => {
+      return user.name.match(searchedText) ||
+      user.email.match(searchedText) ||
+      user.designation.match(searchedText) ||
+      user.department.match(searchedText)
+    })
     
     console.log(filteredData);
+}
+
+
+
+function setColor(){
+  let body = document.querySelector("body");
+  body.classList.add("active");
+}
+
+function rmColor(){
+  document.body.classList.remove("active")
 }

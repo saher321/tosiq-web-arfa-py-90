@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" id="clr" placeholder="Add color">
+
+    <button onclick="addClr()">Add new</button>
+
+    <select id="clrs" onchange="applyColor()"></select>
+
+    <script>
+
+        function addClr(){
+            let clr = document.getElementById("clr").value;
+            if (!clr){
+                alert("Please provide specific color!");
+                return;
+            }
+
+            let selectBox = document.getElementById("clrs");
+
+            selectBox.innerHTML += `<option>${clr}</option>`;
+            // console.log("Color:", clr)
+        }
+
+        function applyColor(){
+            let selectedClr = document.getElementById("clrs").value;
+            document.body.style.backgroundColor = selectedClr;
+            // window.location.href = selectedClr;
+
+        }
+    </script>
+    
+</body>
+</html>

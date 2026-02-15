@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .active{
+            background-color: green;
+        }
+    </style>
 </head>
 <body>
     <h1>User data</h1>
-
+    <button onclick="setColor()">Set color</button> 
+    <button onclick="rmColor()">Remove color</button> 
     <input type="search" placeholder="Search here..." id="searchedText" onInput="filterUsers()">
     <br> <br>
     <table border="1" cellspacing="0" cellpadding="20">
