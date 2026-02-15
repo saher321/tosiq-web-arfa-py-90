@@ -91,11 +91,18 @@ function printData(){
 
 let departmentName = "Design";
 
-const filteredData = users.filter((user) => user.department == departmentName)
-
-console.log(filteredData);
 
 function filterUsers(){
     let searchedText = document.getElementById("searchedText").value;
-    console.log(searchedText);
+    
+    const filteredData = users.filter((user) => 
+    {
+        return user.name.match(searchedText) ||
+        user.email.match(searchedText) ||
+        user.designation.match(searchedText) ||
+        user.department.match(searchedText)
+    }
+    )
+    
+    console.log(filteredData);
 }
