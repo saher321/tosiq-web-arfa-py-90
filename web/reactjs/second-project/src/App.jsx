@@ -15,7 +15,7 @@ const App = () => {
   return (
     
     <BoxWrapper class="w-50">
-      <div className="bg-blue-500 text-white p-4">App</div>
+      <div className="bg-blue-500 text-white p-4">useRef()</div>
 
       <Card>
         <div className="flex items-center gap-3">
