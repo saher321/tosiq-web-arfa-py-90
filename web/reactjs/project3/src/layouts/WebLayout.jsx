@@ -7,7 +7,9 @@ const WebLayout = ({children}) => {
     <>
         <Navbar />
 
-        {children}
+        <div className='mx-auto max-w-6xl'> 
+          {children}
+        </div>
 
         <Footer />
       

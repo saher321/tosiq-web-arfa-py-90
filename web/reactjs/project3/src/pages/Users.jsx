@@ -3,6 +3,7 @@ import WebLayout from '../layouts/WebLayout';
 import axios from 'axios'
 import { USERS_API } from '../utils/APIS';
 import { Link } from 'react-router';
+import UserCard from '../components/UserCard';
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false)
@@ -21,27 +22,25 @@ const Users = () => {
     getAllUsers();
   }, []);
 
-  if (isLoading) {
-    return <h1>Loading...</h1>
-  }
   return (
     <WebLayout>
       <div>
-        Users page
+        Users
       </div>
-      <div className='bg-gray-200'>
-        <ul>
-          {users.map((user, i) => {
-            return (
-              <li key={i}>
-                <Link to={`/users/${user.id}`}>
-                  {user.firstName}
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
+      {
+        isLoading ? "Loading..." :
+        <div>
+          <div className='grid grid-cols-12 gap-3'>
+            {users.map((user, i) => {
+              return (
+                <div className="col-span-4" key={i}>
+                  <UserCard user={user}/>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      }
     </WebLayout>
   )
 }
