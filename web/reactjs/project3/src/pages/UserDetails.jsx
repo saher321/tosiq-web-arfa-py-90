@@ -9,6 +9,9 @@ const UserDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const params = useParams();
+  let tblBorder = 'w-full rounded-xl border border-gray-100'
+  let th = "border rounded-xl border-gray-200 p-2 text-left"
+  let td = "border rounded-xl border-gray-200 p-2"
 
   useEffect(()=>{
     const singleUser = async () => {
@@ -26,21 +29,6 @@ const UserDetails = () => {
     singleUser();
   }, [params.id]);
 
-  const tableData1 = [
-    { id: 1, name: "John", age: 25 },
-    { id: 2, name: "Jane", age: 28 },
-    { id: 3, name: "Mike", age: 22 },
-    { id: 4, name: "Sara", age: 30 },
-    { id: 5, name: "Tom", age: 27 },
-  ];
-
-  const tableData2 = [
-    { id: 1, product: "Laptop", price: "$1200" },
-    { id: 2, product: "Phone", price: "$800" },
-    { id: 3, product: "Tablet", price: "$600" },
-    { id: 4, product: "Watch", price: "$300" },
-    { id: 5, product: "Headphones", price: "$200" },
-  ];
 
   return (
     <WebLayout>
@@ -54,48 +42,91 @@ const UserDetails = () => {
             <span className='text-gray-500'>{user?.email}</span>
           </div>
           <div className="w-full p-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         
         {/* Table 1 */}
-        <div className="overflow-x-auto">
-          <table className="w-full border border-gray-300">
+        <div className="rounded-xl border border-gray-300 overflow-x-auto">
+          <table className={tblBorder}>
             <thead className="bg-gray-100">
               <tr>
-                <th className="border p-2 text-left">ID</th>
-                <th className="border p-2 text-left">Name</th>
-                <th className="border p-2 text-left">Age</th>
+                <th colSpan={2} className={th}>Personal information</th>
               </tr>
             </thead>
             <tbody>
-              {tableData1.map((row) => (
-                <tr key={row.id} className="hover:bg-gray-50">
-                  <td className="border p-2">{row.id}</td>
-                  <td className="border p-2">{row.name}</td>
-                  <td className="border p-2">{row.age}</td>
+                <tr className="hover:bg-gray-50">
+                  <td className={td + " text-gray-500"}>Full name</td>
+                  <td className={td + " font-bold"}>{user?.firstName + ' ' + user?.lastName}</td>
                 </tr>
-              ))}
+                <tr className="hover:bg-gray-50">
+                  <td className={td + " text-gray-500"}>Username</td>
+                  <td className={td + " font-bold"}>{user?.username}</td>
+                </tr>
+                <tr className="hover:bg-gray-50">
+                  <td className={td + " text-gray-500"}>Email</td>
+                  <td className={td + " font-bold"}>{user?.email}</td>
+                </tr>
+                <tr className="hover:bg-gray-50">
+                  <td className={td + " text-gray-500"}>Phone</td>
+                  <td className={td + " font-bold"}>{user?.phone}</td>
+                </tr>
             </tbody>
           </table>
         </div>
 
         {/* Table 2 */}
-        <div className="overflow-x-auto">
-          <table className="w-full border border-gray-300">
+        <div className="rounded-xl border border-gray-300 overflow-x-auto">
+          <table className={tblBorder}>
             <thead className="bg-gray-100">
               <tr>
-                <th className="border p-2 text-left">ID</th>
-                <th className="border p-2 text-left">Product</th>
-                <th className="border p-2 text-left">Price</th>
+                <th colSpan={2} className={th}>Company information</th>
               </tr>
             </thead>
             <tbody>
-              {tableData2.map((row) => (
-                <tr key={row.id} className="hover:bg-gray-50">
-                  <td className="border p-2">{row.id}</td>
-                  <td className="border p-2">{row.product}</td>
-                  <td className="border p-2">{row.price}</td>
+                <tr className="hover:bg-gray-50">
+                  <td className={td + " text-gray-500"}>Comnpany name</td>
+                  <td className={td + " font-bold"}>{user?.company?.name}</td>
                 </tr>
-              ))}
+                <tr className="hover:bg-gray-50">
+                  <td className={td + " text-gray-500"}>Designation</td>
+                  <td className={td + " font-bold"}>{user?.company?.title}</td>
+                </tr>
+                <tr className="hover:bg-gray-50">
+                  <td className={td + " text-gray-500"}>Department</td>
+                  <td className={td + " font-bold"}>{user?.company?.department}</td>
+                </tr>
+                <tr className="hover:bg-gray-50">
+                  <td className={td + " text-gray-500"}>Location</td>
+                  <td className={td + " font-bold"}>{user?.company?.address?.city}, {user?.company?.address?.country}</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Table 2 */}
+        <div className="rounded-xl border border-gray-300 overflow-x-auto">
+          <table className={tblBorder}>
+            <thead className="bg-gray-100">
+              <tr>
+                <th colSpan={2} className={th}>Account details</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr className="hover:bg-gray-50">
+                  <td className={td + " text-gray-500"}>Account title</td>
+                  <td className={td + " font-bold"}>{user?.firstName + ' ' + user?.lastName}</td>
+                </tr>
+                <tr className="hover:bg-gray-50">
+                  <td className={td + " text-gray-500"}>IBAN no#</td>
+                  <td className={td + " font-bold"}>{user?.bank?.iban}</td>
+                </tr>
+                <tr className="hover:bg-gray-50">
+                  <td className={td + " text-gray-500"}>Card expiry</td>
+                  <td className={td + " font-bold"}>{user?.bank?.cardExpire}</td>
+                </tr>
+                <tr className="hover:bg-gray-50">
+                  <td className={td + " text-gray-500"}>Card number</td>
+                  <td className={td + " font-bold"}>{user?.bank?.cardNumber}</td>
+                </tr>
             </tbody>
           </table>
         </div>
