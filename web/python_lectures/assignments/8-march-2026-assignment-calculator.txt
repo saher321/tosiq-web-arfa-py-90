@@ -1,0 +1,14 @@
+ASSIGNMENT 8, March 2026 - calculator app
+Create two file named with
+and create calculator
+
+1. calculator.py
+    -> Enter number 1: 34
+    -> Enter number 2: 6
+    moduleCalculator.sum(num1, num2)
+2. moduleCalculator.py
+    func: 
+        sum
+        divide
+        multiply
+        difference
