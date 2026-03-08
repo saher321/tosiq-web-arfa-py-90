@@ -15,7 +15,7 @@
 # tuple     => (1,2,3,4,5,6,7,7) :: immutable -> non changeable
 # set       => {1,3,4,6,8,9} :: mutable -> changeable
 
-a = 1.23
+a = 123
 b = 12.3
 c = "Hello"
 d = True
@@ -27,3 +27,14 @@ print ("The type of b is", type(b))
 print ("The type of c is", type(c))
 print ("The type of d is", type(d))
 print ("-------Data types-------")
+
+# Get product details from user and print its details
+# id, name, price, category
+
+# output:
+
+# ******** PRODUCT DETAILS *******
+# Product id: 1
+# Product name: Nike air shoes
+# Product price: RS 56000/-
+# Product category: Wearing
