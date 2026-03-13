@@ -18,10 +18,3 @@ students = [
     {'id': 104, 'name': 'Alice', 'age': 19},
 ]
 # print(students)
-
-for std in students:
-    print("-----Student information-------")
-    print("Info: Student id", std['id'])
-    print("Info: Student id", std['name'])
-    print("Info: Student id", std['age'])
-    print("-------------------------------")
