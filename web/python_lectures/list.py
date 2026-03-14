@@ -1,5 +1,5 @@
 # clear(), extend(), pop(), count(), remove()
-# sort(), reverse(), max(), min(), copy(), insert()
+# sort(), reverse(), max(), min(), copy(), insert(), append()
 # remaining function extend(), pop(), reverse(), insert()
 myList = [1, 6, -31, 110, 2, 200, 6, 6, 3, 4]
 
