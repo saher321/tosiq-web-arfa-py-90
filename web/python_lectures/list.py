@@ -1,7 +1,8 @@
 # clear(), extend(), pop(), count(), remove()
-# sorted(), reverse(), max(), min(), copy(), insert()
+# sort(), reverse(), max(), min(), copy(), insert()
 # remaining function extend(), pop(), reverse(), insert()
 myList = [1, 6, -31, 110, 2, 200, 6, 6, 3, 4]
+
 removedList = myList.remove(-31)
 print("After removed 1 value", myList)
 maxNumber = max(myList)
