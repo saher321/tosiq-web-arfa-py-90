@@ -1,0 +1,33 @@
+python
+    django
+    FastApi
+
+=> pip install mysqlclient
+mysql
+1. Install django & djangorestframework
+    - django-admin startproject projectname
+        - python manage.py startapp teacher
+        - python manage.py startapp student
+2. Model
+    defining column field
+
+3. Serializers
+    content to json format
+
+4. Views 
+    methods / functions
+
+5. Urls
+    configurations
+
+6. To run python apis prject
+    python manage.py runserver
+
+
+my project/folder name is lmsapi
+-----------  CMDS  -----------
+1. pip install django
+2. pip install djangorestframework
+3. django-admin startproject projectname
+4. terminal: cd projectname
+    - python manage.py startapp teacher
