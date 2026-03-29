@@ -31,3 +31,27 @@ my project/folder name is lmsapi
 3. django-admin startproject projectname
 4. terminal: cd projectname
     - python manage.py startapp teacher
+
+*******************
+django 5+ : 5.2, 6.0
+Maria DB : 10.6
+-----
+Django == 4.2            >    ok
+
+- cmd:  python manage.py makemigrations
+
+Err : django version isn't support Mariadb10.6
+
+solution: 
+1) Maria db update
+2) django downgrade
+3) project_folder
+    - pip uninstall django    ===== ok
+    - pip install "django===4.2" == ok
+
+python manage.py makemigrations  ======== DONE
+
+
+app (blog, employee) > migration : 0001_initial.py
+
+python manage.py migrate
