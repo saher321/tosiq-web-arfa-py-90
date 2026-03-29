@@ -1,8 +1,14 @@
 ***********  29 March, 2026 ***********
 
-create django rest framework
-and create project of ecommerce
-and make app of productCategory, product
+Django Rest Framework
+1. create project of ecommerce
+2. make apps of:
+    - product;
+        a. name         => CharField(l = 80)
+        b. category     => CharField(l = 20)
+        c. price        => IntergerField
+        d. description  => TextField()
+        e. status       => Boolean: true
 
 Submit on 3 April, 2026
 
