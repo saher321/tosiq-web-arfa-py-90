@@ -1,0 +1,18 @@
+LMS
+    -> client
+
+cmds: 
+    - pip install django
+    - pip install djangorestframework
+    - django-admin startproject apis
+
+    -> apis
+        -> python manage.py startapp department
+
+
+// 
+python manage.py makemigrations
+python manage.py migrate
+
+// to start project 
+// run this cmnd: python manage.py runserver
