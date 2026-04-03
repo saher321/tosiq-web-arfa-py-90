@@ -16,3 +16,9 @@ python manage.py migrate
 
 // to start project 
 // run this cmnd: python manage.py runserver
+
+********** APIS for LMS/Department ***********
+GET         :: http://127.0.0.1:8000/api/departments
+POST        :: http://127.0.0.1:8000/api/departments/create
+PUT/PATCH   ::
+DELETE      ::
