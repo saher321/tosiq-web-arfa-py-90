@@ -7,10 +7,10 @@ from .models import Department
 def departments(request):
     depts = Department.objects.all()
 
-    sr = DepartmentSerializer(depts)
+    dsr = DepartmentSerializer(depts, many=True)
 
     return Response({
         'status': True,
-        'data' : sr.data
+        'data' : dsr.data
     })
 
