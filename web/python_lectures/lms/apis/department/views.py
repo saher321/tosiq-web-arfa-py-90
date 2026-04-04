@@ -48,4 +48,21 @@ def delete(request, pk):
         "message": "Data has been deleted"
     })
 
+@api_view(['PATCH'])
+def update(request, pk):
 
+    dept = get_object_or_404(Department, pk=pk)
+
+    deptData = DepartmentSerializer( dept, data=request.data, partial=True) 
+
+    if deptData.is_valid():
+        deptData.save()
+        return Response({
+            'status': True,
+            'message': "Data has been updated"
+        })
+    else:
+        return Response({
+            'status': False,
+            'message': "Failed to update data"
+        })
