@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from .serializers import DepartmentSerializer
 from .models import Department
 from django.shortcuts import get_object_or_404
+
 @api_view(['GET'])
 def departments(request):
     depts = Department.objects.all()
@@ -39,18 +40,12 @@ def create(request):
 @api_view(["DELETE"])
 def delete(request, pk):
 
-    dept = get_object_or_404(Department, pk)
+    dept = get_object_or_404(Department, pk=pk)
 
-    if dept:
-        dept.delete()
-        return Response({
-            "status": True,
-            "message": "Data has been deleted"
-        })
-    else: 
-        return Response({
-            "status": False,
-            "message": "Data not found"
-        })
+    dept.delete()
+    return Response({
+        "status": True,
+        "message": "Data has been deleted"
+    })
 
 
