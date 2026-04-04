@@ -66,3 +66,14 @@ def update(request, pk):
             'status': False,
             'message': "Failed to update data"
         })
+
+@api_view(["GET"])
+def details(request, pk):
+
+    department = get_object_or_404(Department, pk=pk)
+    deptData = DepartmentSerializer(department)
+
+    return Response({
+        'status': True,
+        'data': deptData.data
+    })
