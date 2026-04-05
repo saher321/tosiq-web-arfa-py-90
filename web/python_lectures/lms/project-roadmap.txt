@@ -1,0 +1,18 @@
+LMS
+  apis
+  client
+
+Client:
+  1 - Auth pages: Login & Signup page, Forgot/Reset page
+  2 - Dashboard, Students, Departments, Classes, Teachers, Assignment, Announcements
+
+  Lib:
+  1. Shadcn ui
+  2. Framer motion
+
+  PKGS:
+  1. react hot toast
+  2. react hook form
+  3. react icons
+  4. react router
+  5. 
