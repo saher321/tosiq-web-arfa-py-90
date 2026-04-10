@@ -1,0 +1,68 @@
+LMS - DASHBOARD
+use JSX for building UI
+Lib & pkgs:   
+- shadcn ui ( without cn func() )                      
+- framer-motion
+- react-router
+- react-icons
+- react-hook-form
+- react-hot-toast
+- axios
+- tailwindcss
+
+Pages structure:
+- Dashboard
+- Departments
+- Courses
+- Students
+- Teachers
+- Grades
+- Settings
+
+folders:
+- components
+    - sidebar.jsx
+    - footer.jsx
+    - header.jsx
+- utils
+    - api.js
+    - common.js
+- layouts
+    - AdminLayout.jsx
+    - StudentLayout.jsx
+    - TeacherLayout.jsx
+- pages
+    - auth
+        - Login.jsx
+        - Register.jsx
+        - ForgotPassword.jsx
+        - ResetPassword.jsx
+    - admin
+        - dashboard
+            - Dashboard.jsx
+        - departments
+            - Departments.jsx
+        - courses
+            - Courses.jsx
+        - students
+            - Students.jsx
+        - teachers
+            - Teachers.jsx
+        - grades
+            - Grades.jsx
+        - settings
+            - Settings.jsx
+    - student
+        - dashboard
+            - Dashboard.jsx
+        - courses
+            - Courses.jsx
+        - grades
+            - Grades.jsx
+    - teacher
+        - dashboard
+            - Dashboard.jsx
+        - courses
+            - Courses.jsx
+        - grades
+            - Grades.jsx
