@@ -4,6 +4,7 @@ from django.db import models
 class Department(models.Model):
     name = models.CharField(max_length=40)
     hod_name = models.CharField(max_length=40)
+    status = models.CharField(max_length=10, default='active')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

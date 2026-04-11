@@ -1,9 +1,11 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
 
 export const DEPTS_API = `${API_BASE_URL}/departments/`;
-
+export const DEPT_CREATE_API = `${API_BASE_URL}/departments/create`;
+export const DEPT_UPDATE_API = `${API_BASE_URL}/departments/update/`;
+export const DEPT_DELETE_API = `${API_BASE_URL}/departments/delete/`;
 const api = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000,

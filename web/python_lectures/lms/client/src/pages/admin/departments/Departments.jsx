@@ -6,7 +6,7 @@ import {
 } from 'react-icons/hi2';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import api, { DEPTS_API } from '../../../utils/api.js';
+import api, { DEPT_CREATE_API, DEPTS_API } from '../../../utils/api.js';
 // import { mockDepartments } from '../../../utils/mockData';
 
 const container = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.05 } } };
@@ -44,30 +44,36 @@ export default function Departments() {
 
   const openAdd = () => {
     setEditing(null);
-    reset({ name: '', head: '', status: 'active' });
+    reset({ name: '', hod_name: '', status: 'active' });
     setModalOpen(true);
   };
 
   const openEdit = (dept) => {
     setEditing(dept);
     setValue('name', dept.name);
-    setValue('head', dept.head);
+    setValue('hod_name', dept.hod_name);
     setValue('status', dept.status);
     setModalOpen(true);
   };
 
-  const onSubmit = (data) => {
+  const saveDepartment = async (data) => {
     if (editing) {
       setDepartments((prev) =>
         prev.map((d) => (d.id === editing.id ? { ...d, ...data } : d))
       );
       toast.success('Department updated!');
     } else {
-      setDepartments((prev) => [
-        ...prev,
-        { id: Date.now(), ...data, students: 0, teachers: 0, courses: 0 },
-      ]);
-      toast.success('Department added!');
+      // setDepartments((prev) => [
+      //   ...prev,
+      //   { id: Date.now(), ...data, students: 0, teachers: 0, courses: 0 },
+      // ]);
+      const response = await api.post(DEPT_CREATE_API, data);
+      if (response.data.status == true) {
+        toast.success(response.data.message);
+        await getDepartments();
+      } else {
+        toast.error(response.data.message);
+      }
     }
     setModalOpen(false);
     reset();
@@ -136,11 +142,11 @@ export default function Departments() {
                   <td className="px-6 py-4 text-sm text-text-primary text-center font-medium">{65}</td>
                   <td className="px-6 py-4 text-sm text-text-primary text-center font-medium">{12}</td>
                   <td className="px-6 py-4 text-center">
-                    <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${dept.is_active === true
+                    <span className={`capitalize inline-flex px-3 py-1 rounded-full text-xs font-medium ${dept.status === "active"
                       ? 'bg-success/10 text-success'
                       : 'bg-gray-light/30 text-text-muted'
                       }`}>
-                      {dept.is_active ? 'Active' : 'Inactive'}
+                      {dept.status}
                     </span>
                   </td>
                   <td className="px-6 py-4">
@@ -189,7 +195,7 @@ export default function Departments() {
                 </button>
               </div>
 
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+              <form onSubmit={handleSubmit(saveDepartment)} className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-text-primary mb-1.5">Department Name</label>
                   <input
@@ -202,11 +208,11 @@ export default function Departments() {
                 <div>
                   <label className="block text-sm font-medium text-text-primary mb-1.5">Department Head</label>
                   <input
-                    {...register('head', { required: 'Head is required' })}
+                    {...register('hod_name', { required: 'HOD name is required' })}
                     className="w-full h-11 px-4 rounded-xl border border-gray-light bg-ghost text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
                     placeholder="e.g. Dr. John Doe"
                   />
-                  {errors.head && <p className="text-xs text-danger mt-1">{errors.head.message}</p>}
+                  {errors.hod_name && <p className="text-xs text-danger mt-1">{errors.hod_name.message}</p>}
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-text-primary mb-1.5">Status</label>
