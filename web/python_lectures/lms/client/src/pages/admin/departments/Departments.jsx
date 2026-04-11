@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   HiOutlinePlus, HiOutlinePencilSquare, HiOutlineTrash,
@@ -6,23 +6,41 @@ import {
 } from 'react-icons/hi2';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { mockDepartments } from '../../../utils/mockData';
+import api, { DEPTS_API } from '../../../utils/api.js';
+// import { mockDepartments } from '../../../utils/mockData';
 
 const container = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.05 } } };
 const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
 
 export default function Departments() {
-  const [departments, setDepartments] = useState(mockDepartments);
+  const [departments, setDepartments] = useState([]);
   const [search, setSearch] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState(null);
 
   const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm();
 
-  const filtered = departments.filter((d) =>
-    d.name.toLowerCase().includes(search.toLowerCase()) ||
-    d.head.toLowerCase().includes(search.toLowerCase())
-  );
+  const getDepartments = async () => {
+    try {
+      const response = await api.get(DEPTS_API);
+      setDepartments(response.data.data);
+    } catch (error) {
+      console.error('Error fetching departments:', error);
+    }
+  };
+
+  useEffect(() => {
+    getDepartments();
+  }, []);
+
+  const getFilteredDepartments = () => {
+    if (departments.length === 0) return [];
+    const filtered = departments.filter((d) =>
+      d.name.toLowerCase().includes(search.toLowerCase()) ||
+      d.hod_name.toLowerCase().includes(search.toLowerCase())
+    );
+    return filtered;
+  };
 
   const openAdd = () => {
     setEditing(null);
@@ -94,7 +112,7 @@ export default function Departments() {
             <thead>
               <tr className="border-b border-gray-light/50">
                 <th className="text-left text-xs font-semibold text-text-muted uppercase tracking-wider px-6 py-4">Department</th>
-                <th className="text-left text-xs font-semibold text-text-muted uppercase tracking-wider px-6 py-4">Head</th>
+                <th className="text-left text-xs font-semibold text-text-muted uppercase tracking-wider px-6 py-4">HOD Name</th>
                 <th className="text-center text-xs font-semibold text-text-muted uppercase tracking-wider px-6 py-4">Students</th>
                 <th className="text-center text-xs font-semibold text-text-muted uppercase tracking-wider px-6 py-4">Teachers</th>
                 <th className="text-center text-xs font-semibold text-text-muted uppercase tracking-wider px-6 py-4">Courses</th>
@@ -103,7 +121,7 @@ export default function Departments() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((dept) => (
+              {getFilteredDepartments().map((dept) => (
                 <tr key={dept.id} className="border-b border-gray-light/30 last:border-0 hover:bg-primary-50/20 transition-colors">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
@@ -113,17 +131,16 @@ export default function Departments() {
                       <span className="text-sm font-medium text-text-primary">{dept.name}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-sm text-text-secondary">{dept.head}</td>
-                  <td className="px-6 py-4 text-sm text-text-primary text-center font-medium">{dept.students}</td>
-                  <td className="px-6 py-4 text-sm text-text-primary text-center font-medium">{dept.teachers}</td>
-                  <td className="px-6 py-4 text-sm text-text-primary text-center font-medium">{dept.courses}</td>
+                  <td className="px-6 py-4 text-sm text-text-secondary">{dept.hod_name}</td>
+                  <td className="px-6 py-4 text-sm text-text-primary text-center font-medium">{34}</td>
+                  <td className="px-6 py-4 text-sm text-text-primary text-center font-medium">{65}</td>
+                  <td className="px-6 py-4 text-sm text-text-primary text-center font-medium">{12}</td>
                   <td className="px-6 py-4 text-center">
-                    <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${
-                      dept.status === 'active'
-                        ? 'bg-success/10 text-success'
-                        : 'bg-gray-light/30 text-text-muted'
-                    }`}>
-                      {dept.status}
+                    <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${dept.is_active === true
+                      ? 'bg-success/10 text-success'
+                      : 'bg-gray-light/30 text-text-muted'
+                      }`}>
+                      {dept.is_active ? 'Active' : 'Inactive'}
                     </span>
                   </td>
                   <td className="px-6 py-4">
@@ -141,7 +158,7 @@ export default function Departments() {
             </tbody>
           </table>
         </div>
-        {filtered.length === 0 && (
+        {getFilteredDepartments().length === 0 && (
           <div className="text-center py-12 text-text-muted text-sm">No departments found</div>
         )}
       </motion.div>

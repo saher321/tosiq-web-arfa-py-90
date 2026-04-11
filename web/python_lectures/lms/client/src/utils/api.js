@@ -2,6 +2,8 @@ import axios from 'axios';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 
+export const DEPTS_API = `${API_BASE_URL}/departments/`;
+
 const api = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000,
@@ -34,5 +36,7 @@ api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+
 
 export default api;
