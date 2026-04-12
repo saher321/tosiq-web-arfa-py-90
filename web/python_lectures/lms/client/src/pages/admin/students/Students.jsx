@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { HiOutlineMagnifyingGlass, HiOutlineUsers, HiOutlineEnvelope } from 'react-icons/hi2';
+import { HiOutlineMagnifyingGlass, HiOutlineUsers, HiOutlineEnvelope, HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
 import { mockStudents } from '../../../utils/mockData';
 import { getInitials, getAvatarColor } from '../../../utils/common';
 
 const container = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.05 } } };
 const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
+
+
 
 export default function Students() {
   const [search, setSearch] = useState('');
@@ -61,11 +63,10 @@ export default function Students() {
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className={`px-4 py-2 text-sm rounded-lg transition-all cursor-pointer ${
-                filter === f
-                  ? 'bg-primary text-white shadow-md'
-                  : 'bg-white text-text-secondary hover:bg-primary-50 border border-gray-light'
-              }`}
+              className={`px-4 py-2 text-sm rounded-lg transition-all cursor-pointer ${filter === f
+                ? 'bg-primary text-white shadow-md'
+                : 'bg-white text-text-secondary hover:bg-primary-50 border border-gray-light'
+                }`}
             >
               {f.charAt(0).toUpperCase() + f.slice(1)}
             </button>
@@ -83,9 +84,8 @@ export default function Students() {
                 <th className="text-left text-xs font-semibold text-text-muted uppercase tracking-wider px-6 py-4">ID</th>
                 <th className="text-left text-xs font-semibold text-text-muted uppercase tracking-wider px-6 py-4">Department</th>
                 <th className="text-center text-xs font-semibold text-text-muted uppercase tracking-wider px-6 py-4">Semester</th>
-                <th className="text-center text-xs font-semibold text-text-muted uppercase tracking-wider px-6 py-4">GPA</th>
-                <th className="text-center text-xs font-semibold text-text-muted uppercase tracking-wider px-6 py-4">Courses</th>
                 <th className="text-center text-xs font-semibold text-text-muted uppercase tracking-wider px-6 py-4">Status</th>
+                <th className="text-right text-xs font-semibold text-text-muted uppercase tracking-wider px-6 py-4">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -111,19 +111,20 @@ export default function Students() {
                   <td className="px-6 py-4 text-sm text-text-secondary">{student.department}</td>
                   <td className="px-6 py-4 text-sm text-text-primary text-center">{student.semester}</td>
                   <td className="px-6 py-4 text-center">
-                    <span className={`text-sm font-semibold ${
-                      student.gpa >= 3.7 ? 'text-success' : student.gpa >= 3.0 ? 'text-primary' : 'text-warning'
-                    }`}>
-                      {student.gpa}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-sm text-text-primary text-center">{student.enrolledCourses}</td>
-                  <td className="px-6 py-4 text-center">
-                    <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${
-                      student.status === 'active' ? 'bg-success/10 text-success' : 'bg-gray-light/30 text-text-muted'
-                    }`}>
+                    <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${student.status === 'active' ? 'bg-success/10 text-success' : 'bg-gray-light/30 text-text-muted'
+                      }`}>
                       {student.status}
                     </span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center justify-end gap-2">
+                      <button className="p-2 rounded-lg hover:bg-primary-50 text-text-muted hover:text-primary transition-colors cursor-pointer">
+                        <HiOutlinePencilSquare className="text-lg" />
+                      </button>
+                      <button className="p-2 rounded-lg hover:bg-red-50 text-text-muted hover:text-danger transition-colors cursor-pointer">
+                        <HiOutlineTrash className="text-lg" />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}

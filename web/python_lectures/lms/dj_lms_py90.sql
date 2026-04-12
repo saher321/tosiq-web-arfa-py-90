@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2026 at 12:39 PM
+-- Generation Time: Apr 12, 2026 at 12:50 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -89,7 +89,11 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (25, 'Can add department', 7, 'add_department'),
 (26, 'Can change department', 7, 'change_department'),
 (27, 'Can delete department', 7, 'delete_department'),
-(28, 'Can view department', 7, 'view_department');
+(28, 'Can view department', 7, 'view_department'),
+(29, 'Can add student', 8, 'add_student'),
+(30, 'Can change student', 8, 'change_student'),
+(31, 'Can delete student', 8, 'delete_student'),
+(32, 'Can view student', 8, 'view_student');
 
 -- --------------------------------------------------------
 
@@ -143,18 +147,22 @@ CREATE TABLE `auth_user_user_permissions` (
 
 CREATE TABLE `department_department` (
   `id` bigint(20) NOT NULL,
-  `name` varchar(40) NOT NULL
+  `name` varchar(40) NOT NULL,
+  `hod_name` varchar(40) DEFAULT NULL,
+  `created_at` datetime(6) NOT NULL,
+  `updated_at` datetime(6) NOT NULL,
+  `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `department_department`
 --
 
-INSERT INTO `department_department` (`id`, `name`) VALUES
-(3, 'Finance'),
-(4, 'Human Resource'),
-(5, 'Math'),
-(6, 'English');
+INSERT INTO `department_department` (`id`, `name`, `hod_name`, `created_at`, `updated_at`, `status`) VALUES
+(1, 'Computer science', 'Marcos', '2026-04-11 09:35:50.602083', '2026-04-12 09:38:43.219978', 'inactive'),
+(2, 'Finance', 'Ali', '2026-04-11 09:35:50.602083', '2026-04-12 09:39:04.524776', 'active'),
+(3, 'Human Resource', 'Alizabeth', '2026-04-11 09:35:50.602083', '2026-04-11 09:35:50.612709', 'active'),
+(10, 'Mobile', 'July', '2026-04-12 09:50:20.383369', '2026-04-12 09:50:20.383414', 'active');
 
 -- --------------------------------------------------------
 
@@ -196,7 +204,8 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (4, 'auth', 'user'),
 (5, 'contenttypes', 'contenttype'),
 (7, 'department', 'department'),
-(6, 'sessions', 'session');
+(6, 'sessions', 'session'),
+(8, 'student', 'student');
 
 -- --------------------------------------------------------
 
@@ -216,25 +225,30 @@ CREATE TABLE `django_migrations` (
 --
 
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
-(1, 'contenttypes', '0001_initial', '2026-04-04 09:24:37.394581'),
-(2, 'auth', '0001_initial', '2026-04-04 09:24:38.684583'),
-(3, 'admin', '0001_initial', '2026-04-04 09:24:38.986588'),
-(4, 'admin', '0002_logentry_remove_auto_add', '2026-04-04 09:24:39.011232'),
-(5, 'admin', '0003_logentry_add_action_flag_choices', '2026-04-04 09:24:39.059908'),
-(6, 'contenttypes', '0002_remove_content_type_name', '2026-04-04 09:24:39.222271'),
-(7, 'auth', '0002_alter_permission_name_max_length', '2026-04-04 09:24:39.369259'),
-(8, 'auth', '0003_alter_user_email_max_length', '2026-04-04 09:24:39.417434'),
-(9, 'auth', '0004_alter_user_username_opts', '2026-04-04 09:24:39.435254'),
-(10, 'auth', '0005_alter_user_last_login_null', '2026-04-04 09:24:39.569302'),
-(11, 'auth', '0006_require_contenttypes_0002', '2026-04-04 09:24:39.585315'),
-(12, 'auth', '0007_alter_validators_add_error_messages', '2026-04-04 09:24:39.603382'),
-(13, 'auth', '0008_alter_user_username_max_length', '2026-04-04 09:24:39.643326'),
-(14, 'auth', '0009_alter_user_last_name_max_length', '2026-04-04 09:24:39.675198'),
-(15, 'auth', '0010_alter_group_name_max_length', '2026-04-04 09:24:39.715558'),
-(16, 'auth', '0011_update_proxy_permissions', '2026-04-04 09:24:39.737937'),
-(17, 'auth', '0012_alter_user_first_name_max_length', '2026-04-04 09:24:39.772589'),
-(18, 'department', '0001_initial', '2026-04-04 09:24:39.808878'),
-(19, 'sessions', '0001_initial', '2026-04-04 09:24:39.880773');
+(1, 'contenttypes', '0001_initial', '2026-04-03 10:05:45.953105'),
+(2, 'auth', '0001_initial', '2026-04-03 10:05:46.454897'),
+(3, 'admin', '0001_initial', '2026-04-03 10:05:46.557484'),
+(4, 'admin', '0002_logentry_remove_auto_add', '2026-04-03 10:05:46.565361'),
+(5, 'admin', '0003_logentry_add_action_flag_choices', '2026-04-03 10:05:46.575662'),
+(6, 'contenttypes', '0002_remove_content_type_name', '2026-04-03 10:05:46.637760'),
+(7, 'auth', '0002_alter_permission_name_max_length', '2026-04-03 10:05:46.692869'),
+(8, 'auth', '0003_alter_user_email_max_length', '2026-04-03 10:05:46.704268'),
+(9, 'auth', '0004_alter_user_username_opts', '2026-04-03 10:05:46.712939'),
+(10, 'auth', '0005_alter_user_last_login_null', '2026-04-03 10:05:46.766860'),
+(11, 'auth', '0006_require_contenttypes_0002', '2026-04-03 10:05:46.769700'),
+(12, 'auth', '0007_alter_validators_add_error_messages', '2026-04-03 10:05:46.777766'),
+(13, 'auth', '0008_alter_user_username_max_length', '2026-04-03 10:05:46.789926'),
+(14, 'auth', '0009_alter_user_last_name_max_length', '2026-04-03 10:05:46.802256'),
+(15, 'auth', '0010_alter_group_name_max_length', '2026-04-03 10:05:46.814174'),
+(16, 'auth', '0011_update_proxy_permissions', '2026-04-03 10:05:46.822190'),
+(17, 'auth', '0012_alter_user_first_name_max_length', '2026-04-03 10:05:46.833705'),
+(18, 'department', '0001_initial', '2026-04-03 10:05:46.845955'),
+(19, 'sessions', '0001_initial', '2026-04-03 10:05:46.874515'),
+(20, 'department', '0002_department_hod_name', '2026-04-11 09:32:31.581054'),
+(21, 'department', '0003_department_created_at_department_updated_at', '2026-04-11 09:35:50.622746'),
+(22, 'department', '0004_department_status', '2026-04-11 10:17:30.301353'),
+(23, 'student', '0001_initial', '2026-04-12 10:43:04.534445'),
+(24, 'student', '0002_rename_dept_id_student_dept', '2026-04-12 10:49:48.809547');
 
 -- --------------------------------------------------------
 
@@ -246,6 +260,26 @@ CREATE TABLE `django_session` (
   `session_key` varchar(40) NOT NULL,
   `session_data` longtext NOT NULL,
   `expire_date` datetime(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_student`
+--
+
+CREATE TABLE `student_student` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(80) NOT NULL,
+  `image` longtext NOT NULL,
+  `enrollment_no` varchar(80) NOT NULL,
+  `email` varchar(80) NOT NULL,
+  `semester` int(11) NOT NULL,
+  `cgpa` double NOT NULL,
+  `status` varchar(10) NOT NULL,
+  `created_at` datetime(6) NOT NULL,
+  `updated_at` datetime(6) NOT NULL,
+  `dept_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -332,6 +366,13 @@ ALTER TABLE `django_session`
   ADD KEY `django_session_expire_date_a5c62663` (`expire_date`);
 
 --
+-- Indexes for table `student_student`
+--
+ALTER TABLE `student_student`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_student_dept_id_7f58c666_fk_department_department_id` (`dept_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -351,7 +392,7 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `auth_user`
@@ -375,7 +416,7 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `department_department`
 --
 ALTER TABLE `department_department`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `django_admin_log`
@@ -387,13 +428,19 @@ ALTER TABLE `django_admin_log`
 -- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `student_student`
+--
+ALTER TABLE `student_student`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -432,6 +479,12 @@ ALTER TABLE `auth_user_user_permissions`
 ALTER TABLE `django_admin_log`
   ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
+
+--
+-- Constraints for table `student_student`
+--
+ALTER TABLE `student_student`
+  ADD CONSTRAINT `student_student_dept_id_7f58c666_fk_department_department_id` FOREIGN KEY (`dept_id`) REFERENCES `department_department` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
