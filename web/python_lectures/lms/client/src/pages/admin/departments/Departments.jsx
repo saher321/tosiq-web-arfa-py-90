@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, calcGeneratorDuration } from 'framer-motion';
 import {
   HiOutlinePlus, HiOutlinePencilSquare, HiOutlineTrash,
   HiOutlineMagnifyingGlass, HiOutlineBuildingOffice2, HiOutlineXMark,
 } from 'react-icons/hi2';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import api, { DEPT_CREATE_API, DEPTS_API } from '../../../utils/api.js';
+import api, { DEPT_CREATE_API, DEPT_DELETE_API, DEPT_UPDATE_API, DEPTS_API } from '../../../utils/api.js';
 // import { mockDepartments } from '../../../utils/mockData';
 
 const container = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.05 } } };
@@ -58,10 +58,17 @@ export default function Departments() {
 
   const saveDepartment = async (data) => {
     if (editing) {
-      setDepartments((prev) =>
-        prev.map((d) => (d.id === editing.id ? { ...d, ...data } : d))
-      );
-      toast.success('Department updated!');
+      // console.log(data, editing);
+      // setDepartments((prev) =>
+      //   prev.map((d) => (d.id === editing.id ? { ...d, ...data } : d))
+      // );
+      const response = await api.patch(DEPT_UPDATE_API + editing.id, data);
+      // if (response.data.status == true) {
+      //   toast.success(response.data.message);
+      await getDepartments();
+      // } else {
+      //   toast.error(response.data.message);
+      // }
     } else {
       // setDepartments((prev) => [
       //   ...prev,
@@ -79,9 +86,19 @@ export default function Departments() {
     reset();
   };
 
-  const handleDelete = (id) => {
-    setDepartments((prev) => prev.filter((d) => d.id !== id));
-    toast.success('Department deleted');
+  const handleDelete = async (id) => {
+    if (!confirm("Are you sure you want to delete this department?")) return;
+    try {
+      const response = await api.delete(DEPT_DELETE_API + id);
+      if (response.data.status == true) {
+        toast.success(response.data.message);
+        await getDepartments();
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.log("ERR:", error)
+    }
   };
 
   return (

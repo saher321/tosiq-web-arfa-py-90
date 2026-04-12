@@ -42,15 +42,22 @@ def delete(request, pk):
 
     dept = get_object_or_404(Department, pk=pk)
 
-    dept.delete()
-    return Response({
-        "status": True,
-        "message": "Data has been deleted"
-    })
+    if not dept:
+        return Response({
+            "status": False,
+            "message": "Data not found"
+        })
+    else:
+        dept.delete()
+        return Response({
+            "status": True,
+            "message": "Data has been deleted"
+        })
 
 @api_view(['PATCH'])
 def update(request, pk):
 
+    # print(request.data, pk)
     dept = get_object_or_404(Department, pk=pk)
 
     deptData = DepartmentSerializer( dept, data=request.data, partial=True) 
