@@ -6,6 +6,12 @@ export const DEPTS_API = `${API_BASE_URL}/departments/`;
 export const DEPT_CREATE_API = `${API_BASE_URL}/departments/create`;
 export const DEPT_UPDATE_API = `${API_BASE_URL}/departments/update/`;
 export const DEPT_DELETE_API = `${API_BASE_URL}/departments/delete/`;
+
+export const STUDENTS_API = `${API_BASE_URL}/students/`;
+export const STUDENT_CREATE_API = `${API_BASE_URL}/students/create`;
+export const STUDENT_UPDATE_API = `${API_BASE_URL}/students/update/`;
+export const STUDENT_DELETE_API = `${API_BASE_URL}/students/delete/`;
+
 const api = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000,
