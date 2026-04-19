@@ -7,7 +7,8 @@ import {
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import api, { STUDENTS_API, STUDENT_CREATE_API, STUDENT_DELETE_API, STUDENT_UPDATE_API, DEPTS_API } from '../../../utils/api.js';
-import { getInitials, getAvatarColor } from '../../../utils/common';
+import { getInitials, getAvatarColor } from '../../../utils/common.js';
+import { uploadImage } from '../../../utils/cloudinary.js';
 
 const container = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.05 } } };
 const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
@@ -77,6 +78,19 @@ export default function Students() {
     setModalOpen(true);
   };
 
+  const onImageSelect = (e) => {
+    const file = e.target.files[0];
+    console.log(file)
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setValue('image', reader.result);
+      };
+      const url = reader.readAsDataURL(file);
+      console.log(url)
+    }
+  };
+
   const saveStudent = async (data) => {
     if (editing) {
       const response = await api.patch(STUDENT_UPDATE_API + editing.id, data);
@@ -87,6 +101,9 @@ export default function Students() {
       }
       await getStudents();
     } else {
+      // const url = await uploadImage(data.image);
+      // data.image = url;
+      // console.log(data)
       const response = await api.post(STUDENT_CREATE_API, data);
       if (response.data.status == true) {
         toast.success(response.data.message);
@@ -288,6 +305,9 @@ export default function Students() {
                   <label className="block text-sm font-medium text-text-primary mb-1.5">Image URL</label>
                   <input
                     {...register('image')}
+                    type='file'
+                    accept='image/*'
+                    onChange={onImageSelect}
                     className="w-full h-11 px-4 rounded-xl border border-gray-light bg-ghost text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
                     placeholder="e.g. https://example.com/photo.jpg"
                   />
