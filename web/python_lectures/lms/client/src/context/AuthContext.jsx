@@ -39,16 +39,15 @@ export function AuthProvider({ children }) {
 
   const register = async (data) => {
     const userData = {
-      id: Date.now(),
-      name: data.name,
+      first_name: data.first_name,
+      last_name: data.last_name,
+      username: data.username,
       email: data.email,
-      role: data.role || 'student',
-      avatar: null,
-      department: data.department || 'Computer Science',
+      // role: data.role || 'student',
     };
     setUser(userData);
-    localStorage.setItem('lms_user', JSON.stringify(userData));
-    localStorage.setItem('lms_token', 'mock-jwt-token-' + userData.role);
+    // localStorage.setItem('lms_user', JSON.stringify(userData));
+    // localStorage.setItem('lms_token', 'mock-jwt-token-' + userData.role);
     toast.success('Registration successful!');
     return true;
   };

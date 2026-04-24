@@ -10,11 +10,13 @@ def signup(request):
             'message': "Please fill all remaining fields"
         })
     
+    first_name=request.data['first_name']
+    last_name=request.data['last_name']
     username=request.data['username']
     email=request.data['email']
     password=request.data['password']
 
-    if not username or not email or not password:
+    if not first_name or not last_name or not username or not email or not password:
         return Response({
             'status': False,
             'message': "Please fill all remaining fields"
@@ -28,6 +30,8 @@ def signup(request):
         })
         
     User.objects.create_user(
+        first_name=request.data['first_name'],
+        last_name=request.data['last_name'],
         username=request.data['username'],
         email=request.data['email'],
         password=request.data['password']

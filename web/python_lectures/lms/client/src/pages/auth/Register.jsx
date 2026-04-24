@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router';
 import { motion } from 'framer-motion';
 import { HiOutlineAcademicCap, HiOutlineEye, HiOutlineEyeSlash } from 'react-icons/hi2';
 import { useAuth } from '../../context/AuthContext';
+import api, { SIGNUP_API } from '../../utils/api.js';
 
 export default function Register() {
   const { register: registerUser } = useAuth();
@@ -18,13 +19,20 @@ export default function Register() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
+  const handleUserSignup = async (data) => {
     setLoading(true);
     try {
-      const success = await registerUser(data);
-      if (success) {
-        navigate(`/${data.role}/dashboard`);
+      const response = await api.post(SIGNUP_API, data)
+      if (response.data.status == true) {
+        const success = await registerUser(data);
+        if (success) {
+          navigate(`/${data.role}/dashboard`);
+        }
+      } else {
+        toast.error(response.data.message);
       }
+    } catch (error) {
+      console.log(error)
     } finally {
       setLoading(false);
     }
@@ -52,17 +60,41 @@ export default function Register() {
             <p className="text-sm text-text-muted mt-1">Join the LMS platform</p>
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={handleSubmit(handleUserSignup)} className="space-y-4">
             {/* Name */}
+            <div className="flex gap-3">
+
+              <div>
+                <label className="block text-sm font-medium text-text-primary mb-1.5">First Name</label>
+                <input
+                  type="text"
+                  placeholder="John"
+                  {...register('first_name', { required: 'First name is required' })}
+                  className="w-full h-11 px-4 rounded-xl border border-gray-light bg-white text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                />
+                {errors.first_name && <p className="text-xs text-danger mt-1">{errors.first_name.message}</p>}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-text-primary mb-1.5">Last Name</label>
+                <input
+                  type="text"
+                  placeholder="Doe"
+                  {...register('last_name', { required: 'Last name is required' })}
+                  className="w-full h-11 px-4 rounded-xl border border-gray-light bg-white text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                />
+                {errors.last_name && <p className="text-xs text-danger mt-1">{errors.last_name.message}</p>}
+              </div>
+            </div>
             <div>
-              <label className="block text-sm font-medium text-text-primary mb-1.5">Full Name</label>
+              <label className="block text-sm font-medium text-text-primary mb-1.5">Username</label>
               <input
                 type="text"
-                placeholder="John Doe"
-                {...register('name', { required: 'Name is required' })}
+                placeholder="johndoe"
+                {...register('username', { required: 'User name is required' })}
                 className="w-full h-11 px-4 rounded-xl border border-gray-light bg-white text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
               />
-              {errors.name && <p className="text-xs text-danger mt-1">{errors.name.message}</p>}
+              {errors.username && <p className="text-xs text-danger mt-1">{errors.username.message}</p>}
             </div>
 
             {/* Email */}
@@ -93,21 +125,6 @@ export default function Register() {
               </select>
             </div>
 
-            {/* Department */}
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-1.5">Department</label>
-              <select
-                {...register('department')}
-                className="w-full h-11 px-4 rounded-xl border border-gray-light bg-white text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer"
-              >
-                <option value="Computer Science">Computer Science</option>
-                <option value="Electrical Engineering">Electrical Engineering</option>
-                <option value="Business Administration">Business Administration</option>
-                <option value="Mathematics">Mathematics</option>
-                <option value="Physics">Physics</option>
-              </select>
-            </div>
-
             {/* Password */}
             <div>
               <label className="block text-sm font-medium text-text-primary mb-1.5">Password</label>
@@ -130,23 +147,6 @@ export default function Register() {
                 </button>
               </div>
               {errors.password && <p className="text-xs text-danger mt-1">{errors.password.message}</p>}
-            </div>
-
-            {/* Confirm Password */}
-            <div>
-              <label className="block text-sm font-medium text-text-primary mb-1.5">Confirm Password</label>
-              <input
-                type="password"
-                placeholder="••••••••"
-                {...register('confirmPassword', {
-                  required: 'Please confirm your password',
-                  validate: (val) => val === watch('password') || 'Passwords do not match',
-                })}
-                className="w-full h-11 px-4 rounded-xl border border-gray-light bg-white text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
-              />
-              {errors.confirmPassword && (
-                <p className="text-xs text-danger mt-1">{errors.confirmPassword.message}</p>
-              )}
             </div>
 
             <button
