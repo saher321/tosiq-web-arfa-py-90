@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     "corsheaders",
     'department',
-    'student'
+    'student',
+    'user'
 ]
 
 MIDDLEWARE = [

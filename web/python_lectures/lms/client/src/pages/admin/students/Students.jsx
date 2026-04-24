@@ -8,7 +8,6 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import api, { STUDENTS_API, STUDENT_CREATE_API, STUDENT_DELETE_API, STUDENT_UPDATE_API, DEPTS_API } from '../../../utils/api.js';
 import { getInitials, getAvatarColor } from '../../../utils/common.js';
-import { uploadImage } from '../../../utils/cloudinary.js';
 
 const container = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.05 } } };
 const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } };
