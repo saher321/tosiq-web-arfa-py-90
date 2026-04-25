@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.contrib.auth import authenticate
 
 @api_view(['POST'])
 def signup(request):
@@ -40,4 +41,49 @@ def signup(request):
     return Response({
         'status': True,
         'message': "User created successfully",
+    })
+
+
+@api_view(['POST'])
+def login(request):
+    if not request.data:
+        return Response({
+            'status': False,
+            'message': "Please fill all remaining fields"
+        })
+    
+    email=request.data['email']
+    password=request.data['password']
+
+    if not email or not password:
+        return Response({
+            'status': False,
+            'message': "Please fill all remaining fields"
+        })
+
+    isMatched = User.objects.filter(email=email).first()
+    if not isMatched:
+        return Response({
+            'status': False,
+            'message': "User not found"
+        })
+    
+    user = authenticate(password=password)
+
+    if user not None:
+        return Response({
+            'status': True,
+            'message': "User Loggedin",
+            'user': {
+                'id' : user.id,
+                'first_name' : user.first_name,
+                'last_name' : user.last_name,
+                'username' : user.username,
+                'email' : user.email
+            }
+        })
+    
+    return Response({
+        "status" : False,
+        "message" : "Invalid credentials!"
     })
