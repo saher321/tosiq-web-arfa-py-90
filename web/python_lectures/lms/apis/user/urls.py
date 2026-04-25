@@ -3,6 +3,7 @@ from .views import *
 
 urlpatterns = [
     path('signup/', signup),
+    path('login/', login),
 ]
 
 #  a = 10 => <class int>

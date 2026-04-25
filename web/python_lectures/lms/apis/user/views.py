@@ -52,25 +52,25 @@ def login(request):
             'message': "Please fill all remaining fields"
         })
     
-    email=request.data['email']
+    username=request.data['username']
     password=request.data['password']
 
-    if not email or not password:
+    if not username or not password:
         return Response({
             'status': False,
             'message': "Please fill all remaining fields"
         })
 
-    isMatched = User.objects.filter(email=email).first()
-    if not isMatched:
-        return Response({
-            'status': False,
-            'message': "User not found"
-        })
-    
-    user = authenticate(password=password)
+    # isMatched = User.objects.filter(username=username).exists()
+    # if not isMatched :
+    #     return Response({
+    #         'status': False,
+    #         'message': "User not found"
+    #     })
+    # select * from users where username=username and password=password
+    user = authenticate(username=username, password=password)
 
-    if user not None:
+    if user is not None:
         return Response({
             'status': True,
             'message': "User Loggedin",
@@ -84,6 +84,7 @@ def login(request):
         })
     
     return Response({
-        "status" : False,
-        "message" : "Invalid credentials!"
+        "status": False,
+        "message": "Invalid credentials"
     })
+    

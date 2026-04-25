@@ -3,6 +3,7 @@ import axios from 'axios';
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
 
 export const SIGNUP_API = `${API_BASE_URL}/signup/`;
+export const LOGIN_API = `${API_BASE_URL}/login/`;
 
 export const DEPTS_API = `${API_BASE_URL}/departments/`;
 export const DEPT_CREATE_API = `${API_BASE_URL}/departments/create`;

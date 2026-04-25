@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router';
 import { motion } from 'framer-motion';
 import { HiOutlineAcademicCap, HiOutlineEye, HiOutlineEyeSlash } from 'react-icons/hi2';
 import { useAuth } from '../../context/AuthContext';
+import toast from 'react-hot-toast';
+import api, { LOGIN_API } from '../../utils/api.js';
 
 export default function Login() {
   const { login } = useAuth();
@@ -18,13 +20,20 @@ export default function Login() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
+  const loginUser = async (data) => {
     setLoading(true);
     try {
-      const success = await login(data.email, data.password, selectedRole);
-      if (success) {
-        navigate(`/${selectedRole}/dashboard`);
+      const response = await api.post(LOGIN_API, data)
+      if (response.data.status == true) {
+        const success = await login(data.username, data.password, selectedRole);
+        if (success) {
+          navigate(`/${selectedRole}/dashboard`);
+        }
+      } else {
+        toast.error(response.data.message)
       }
+    } catch (error) {
+      console.log(error)
     } finally {
       setLoading(false);
     }
@@ -79,23 +88,22 @@ export default function Login() {
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-            {/* Email */}
+          <form onSubmit={handleSubmit(loginUser)} className="space-y-5">
+            {/* Username */}
             <div>
               <label className="block text-sm font-medium text-text-primary mb-1.5">
-                Email Address
+                Username
               </label>
               <input
-                type="email"
-                placeholder="you@example.com"
-                {...register('email', {
-                  required: 'Email is required',
-                  pattern: { value: /^\S+@\S+$/i, message: 'Invalid email' },
+                type="text"
+                placeholder="johndoe"
+                {...register('username', {
+                  required: 'Username is required'
                 })}
                 className="w-full h-11 px-4 rounded-xl border border-gray-light bg-white text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
               />
-              {errors.email && (
-                <p className="text-xs text-danger mt-1">{errors.email.message}</p>
+              {errors.username && (
+                <p className="text-xs text-danger mt-1">Username is not valid</p>
               )}
             </div>
 

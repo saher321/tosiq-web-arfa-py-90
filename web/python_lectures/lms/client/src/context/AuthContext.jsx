@@ -21,7 +21,7 @@ export function AuthProvider({ children }) {
     setLoading(false);
   }, []);
 
-  const login = async (email, password, role = 'admin') => {
+  const login = async (username, password, role = 'admin') => {
     // Mock login — accepts any password
     const mockUser = mockUsers[role];
     if (!mockUser) {
@@ -29,11 +29,11 @@ export function AuthProvider({ children }) {
       return false;
     }
 
-    const userData = { ...mockUser, email };
+    const userData = { ...mockUser, username };
     setUser(userData);
     localStorage.setItem('lms_user', JSON.stringify(userData));
     localStorage.setItem('lms_token', 'mock-jwt-token-' + role);
-    toast.success(`Welcome back, ${userData.name}!`);
+    toast.success(`Welcome back, ${username.toUpperCase()}!`);
     return true;
   };
 
