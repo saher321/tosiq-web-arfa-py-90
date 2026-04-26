@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.contrib.auth import authenticate
+from django.core.mail import send_mail
 
 @api_view(['POST'])
 def signup(request):
@@ -71,9 +72,16 @@ def login(request):
     user = authenticate(username=username, password=password)
 
     if user is not None:
+        send_mail(
+            subject='Login Alert',
+            message='You have been logged in successfully',
+            from_email='untoldgamingplays@gmail.com',
+            recipient_list=[user.email],
+            fail_silently=False,
+        )
         return Response({
             'status': True,
-            'message': "User Loggedin",
+            'message': "User Loggedin successfully and email sent successfully",
             'user': {
                 'id' : user.id,
                 'first_name' : user.first_name,
