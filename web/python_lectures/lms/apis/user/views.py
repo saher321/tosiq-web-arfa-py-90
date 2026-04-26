@@ -1,8 +1,10 @@
+import random
 from django.contrib.auth.models import User
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.contrib.auth import authenticate
 from django.core.mail import send_mail
+from .models import ResetPasswordOtp
 
 @api_view(['POST'])
 def signup(request):
@@ -95,4 +97,48 @@ def login(request):
         "status": False,
         "message": "Invalid credentials"
     })
+
+
+@api_view(['POST'])
+def forgot_password(request):
+    if not request.data:
+        return Response({
+            'status': False,
+            'message': "Please fill all remaining fields"
+        })
+
+    email=request.data['email']
+    if not email:
+        return Response({
+            'status': False,
+            'message': "Please fill all remaining fields"
+        })
     
+    user = User.objects.filter(email=email).first()
+    if not user:
+        return Response({
+            'status': False,
+            'message': "User not found"
+        })
+    
+    otp = random.randint(100000, 999999)
+    
+    ResetPasswordOtp.objects.create(user=user, otp=otp, is_verified=False)
+
+    send_mail(
+        subject='Forgot Password',
+        message='Your password has been reset successfully',
+        from_email='untoldgamingplays@gmail.com',
+        recipient_list=[email],
+        html_message=f'<p>Your OTP: {otp}</p>',
+        fail_silently=False
+    )
+    
+    return Response({
+        'status': True,
+        'message': "OTP sent successfully to your email",
+        "user": {
+            "id": user.id,
+            "email": user.email
+        }
+    })
