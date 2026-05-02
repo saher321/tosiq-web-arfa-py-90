@@ -21,4 +21,24 @@ int main () {
 		cout << "Total amount: " << amount;
 	}
 	
+	// ---------------------------------------
+	
+	int consumed_unit;
+	int residential_unit=23;
+	int commercial_unit=76;
+	int standard_unit=84;
+	
+	if (){ // unit < 250
+	} if else() { // unit > 250 * consumed_unit
+	} else {
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
