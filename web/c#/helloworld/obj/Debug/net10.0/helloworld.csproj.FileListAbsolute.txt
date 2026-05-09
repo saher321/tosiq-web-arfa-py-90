@@ -1,0 +1,15 @@
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\helloworld\bin\Debug\net10.0\helloworld.exe
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\helloworld\bin\Debug\net10.0\helloworld.deps.json
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\helloworld\bin\Debug\net10.0\helloworld.runtimeconfig.json
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\helloworld\bin\Debug\net10.0\helloworld.dll
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\helloworld\bin\Debug\net10.0\helloworld.pdb
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\helloworld\obj\Debug\net10.0\helloworld.GeneratedMSBuildEditorConfig.editorconfig
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\helloworld\obj\Debug\net10.0\helloworld.AssemblyInfoInputs.cache
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\helloworld\obj\Debug\net10.0\helloworld.AssemblyInfo.cs
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\helloworld\obj\Debug\net10.0\helloworld.csproj.CoreCompileInputs.cache
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\helloworld\obj\Debug\net10.0\helloworld.sourcelink.json
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\helloworld\obj\Debug\net10.0\helloworld.dll
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\helloworld\obj\Debug\net10.0\refint\helloworld.dll
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\helloworld\obj\Debug\net10.0\helloworld.pdb
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\helloworld\obj\Debug\net10.0\helloworld.genruntimeconfig.cache
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\helloworld\obj\Debug\net10.0\ref\helloworld.dll
