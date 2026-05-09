@@ -1,0 +1,15 @@
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\shoppingamount\obj\Debug\net10.0\shoppingamount.GeneratedMSBuildEditorConfig.editorconfig
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\shoppingamount\obj\Debug\net10.0\shoppingamount.AssemblyInfoInputs.cache
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\shoppingamount\obj\Debug\net10.0\shoppingamount.AssemblyInfo.cs
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\shoppingamount\obj\Debug\net10.0\shoppingamount.csproj.CoreCompileInputs.cache
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\shoppingamount\obj\Debug\net10.0\shoppingamount.sourcelink.json
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\shoppingamount\bin\Debug\net10.0\shoppingamount.exe
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\shoppingamount\bin\Debug\net10.0\shoppingamount.deps.json
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\shoppingamount\bin\Debug\net10.0\shoppingamount.runtimeconfig.json
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\shoppingamount\bin\Debug\net10.0\shoppingamount.dll
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\shoppingamount\bin\Debug\net10.0\shoppingamount.pdb
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\shoppingamount\obj\Debug\net10.0\shoppingamount.dll
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\shoppingamount\obj\Debug\net10.0\refint\shoppingamount.dll
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\shoppingamount\obj\Debug\net10.0\shoppingamount.pdb
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\shoppingamount\obj\Debug\net10.0\shoppingamount.genruntimeconfig.cache
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\shoppingamount\obj\Debug\net10.0\ref\shoppingamount.dll
