@@ -1,0 +1,15 @@
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\sumofproduct\bin\Debug\net10.0\sumofproduct.exe
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\sumofproduct\bin\Debug\net10.0\sumofproduct.deps.json
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\sumofproduct\bin\Debug\net10.0\sumofproduct.runtimeconfig.json
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\sumofproduct\bin\Debug\net10.0\sumofproduct.dll
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\sumofproduct\bin\Debug\net10.0\sumofproduct.pdb
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\sumofproduct\obj\Debug\net10.0\sumofproduct.GeneratedMSBuildEditorConfig.editorconfig
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\sumofproduct\obj\Debug\net10.0\sumofproduct.AssemblyInfoInputs.cache
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\sumofproduct\obj\Debug\net10.0\sumofproduct.AssemblyInfo.cs
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\sumofproduct\obj\Debug\net10.0\sumofproduct.csproj.CoreCompileInputs.cache
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\sumofproduct\obj\Debug\net10.0\sumofproduct.sourcelink.json
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\sumofproduct\obj\Debug\net10.0\sumofproduct.dll
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\sumofproduct\obj\Debug\net10.0\refint\sumofproduct.dll
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\sumofproduct\obj\Debug\net10.0\sumofproduct.pdb
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\sumofproduct\obj\Debug\net10.0\sumofproduct.genruntimeconfig.cache
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\sumofproduct\obj\Debug\net10.0\ref\sumofproduct.dll
