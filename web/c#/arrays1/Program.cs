@@ -4,6 +4,7 @@ class Program
     public static void Main(string[] args)
     {
         int[] numbers = { 44, 23, 34, 30, 45 };
+        // string[] fruits = { "Apple", 45, "Orange", "Mango", "Grapes" };
 
         int subjects = Convert.ToInt32(Console.ReadLine("ENTER SUBJECTS: "));
 
