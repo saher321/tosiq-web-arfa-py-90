@@ -1,0 +1,15 @@
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\loop1\bin\Debug\net10.0\loop1.exe
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\loop1\bin\Debug\net10.0\loop1.deps.json
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\loop1\bin\Debug\net10.0\loop1.runtimeconfig.json
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\loop1\bin\Debug\net10.0\loop1.dll
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\loop1\bin\Debug\net10.0\loop1.pdb
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\loop1\obj\Debug\net10.0\loop1.GeneratedMSBuildEditorConfig.editorconfig
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\loop1\obj\Debug\net10.0\loop1.AssemblyInfoInputs.cache
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\loop1\obj\Debug\net10.0\loop1.AssemblyInfo.cs
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\loop1\obj\Debug\net10.0\loop1.csproj.CoreCompileInputs.cache
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\loop1\obj\Debug\net10.0\loop1.sourcelink.json
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\loop1\obj\Debug\net10.0\loop1.dll
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\loop1\obj\Debug\net10.0\refint\loop1.dll
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\loop1\obj\Debug\net10.0\loop1.pdb
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\loop1\obj\Debug\net10.0\loop1.genruntimeconfig.cache
+C:\xampp\htdocs\tosiq\tosiq-web-arfa-py-90\web\c#\loop1\obj\Debug\net10.0\ref\loop1.dll
