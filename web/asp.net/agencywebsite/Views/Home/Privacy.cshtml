@@ -4,9 +4,9 @@
 <h1>@ViewData["Title"]</h1>
 
 <p>Use this page to detail your site's privacy policy.</p>
-<ul>
+<div class="d-flex gap-2 align-items-center">
     @foreach(var city  in ViewData["Cities"] as string[] )
     {
-        <li>@city</li>
+        <div class="bg-black text-white p-1 rounded-square">@city</div>
     }
-</ul>
+</div>
