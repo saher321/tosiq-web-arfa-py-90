@@ -1,0 +1,7 @@
+
+
+1 - dotnet new mvc -n projectname
+2 - dotnet new webapi -n projectname
+3 - dotnet run  :: to run project 
+4 - dotnet --info :: to show information about dotnet installed sdk and runtime
+5 - dotnet watch :: to run project with hot reload 
