@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { PR_VARIANTS_API } from './utils/api.js'
 import axios from 'axios'
+import AddProduct from './pages/AddProduct.jsx'
 const App = () => {
 
   const [variants, setVariants] = useState([])
@@ -8,9 +9,7 @@ const App = () => {
   const getProductVariants = async () => {
     try {
       const response = await axios.get(PR_VARIANTS_API)
-      console.log(response.data)
       if (response.data.status == true) {
-        console.log("Inside console", response.data)
         setVariants(response.data.variants)
       } else {
         console.error("ERR: Failed to fetch product variant")
@@ -26,6 +25,10 @@ const App = () => {
 
   return (
     <div>
+
+
+      <AddProduct />
+
       <h2>
         Product color variants
       </h2>
