@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { PR_ALL_API, PR_VARIANTS_API } from './utils/api.js'
+import { PR_ALL_API, PR_DEL_API, PR_VARIANTS_API } from './utils/api.js'
 import axios from 'axios'
 import AddProduct from './pages/AddProduct.jsx'
 const App = () => {
@@ -40,6 +40,21 @@ const App = () => {
 
   }, [])
 
+  const handleDelete = async (id) => {
+    try {
+      // http://localhost:5236/api/products/delete/id
+      const response = await axios.delete(PR_DEL_API + "/" + id)
+      if (response.data.status == true) {
+        await getAllProducts()
+      } else {
+        setError(response.data.message)
+        console.log(response.data.message)
+      }
+    } catch (error) {
+      console.log("ERR:", error)
+    }
+  }
+
   return (
     <div>
 
@@ -64,7 +79,9 @@ const App = () => {
               <td>{prd.id}</td>
               <td>{prd.name}</td>
               <td>{prd.price}</td>
-              <td>Edit / Delete</td>
+              <td>Edit / 
+                <button onClick={() => handleDelete(prd.id)}>Delete</button>
+              </td>
             </tr>
           )
         })

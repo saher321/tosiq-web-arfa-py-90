@@ -47,6 +47,26 @@ public class ProductController : ControllerBase
         }
     }
 
+    [HttpDelete("delete/{id}")]
+    public IActionResult DeleteProduct(int id)
+    {
+        var product = _context.Products.Find(id);
+
+        if (product == null) {
+            return Ok(new {
+                status = false,
+                message= "Product not found"
+            });
+        } else {
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+            return Ok(new {
+                status = true,
+                message= "Product has been deleted"
+            });
+        }
+    }
+
     [HttpGet("variants")]
     public IActionResult GetProductsVariants()
     {
