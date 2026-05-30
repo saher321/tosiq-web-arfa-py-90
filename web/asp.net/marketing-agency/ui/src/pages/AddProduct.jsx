@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { PR_ADD_API } from '../utils/api.js'
 import axios from 'axios'
 
-const AddProduct = () => {
+const AddProduct = ({ allProducts }) => {
   const { register, handleSubmit } = useForm()
 
   const handleAddProduct = async (data) => {
@@ -11,6 +11,7 @@ const AddProduct = () => {
       const response = await axios.post(PR_ADD_API, data)
       if (response.data.status == true){
         console.log(response.data)
+        await allProducts()
       } else {
         console.log("Failed to insert data")
       }

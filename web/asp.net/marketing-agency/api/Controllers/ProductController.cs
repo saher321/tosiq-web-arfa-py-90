@@ -29,6 +29,24 @@ public class ProductController : ControllerBase
         });
     }
 
+    [HttpGet("all")]
+    public IActionResult ViewProducts()
+    {
+        var products = _context.Products.ToList();
+
+        if (products.Count > 0) {
+            return Ok(new {
+                status = true,
+                products
+            });
+        } else {
+            return Ok(new {
+                status = false,
+                message= "No products were found"
+            });
+        }
+    }
+
     [HttpGet("variants")]
     public IActionResult GetProductsVariants()
     {
