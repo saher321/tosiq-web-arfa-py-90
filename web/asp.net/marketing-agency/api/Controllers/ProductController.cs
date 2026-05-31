@@ -67,6 +67,24 @@ public class ProductController : ControllerBase
         }
     }
 
+    [HttpGet("view/{id}")]
+    public IActionResult ViewProduct(int id)
+    {
+        var product = _context.Products.Find(id);
+
+        if (product == null) {
+            return Ok(new {
+                status = false,
+                message= "Product not found"
+            });
+        } else {
+            return Ok(new {
+                status = true,
+                product
+            });
+        }
+    }
+
     [HttpGet("variants")]
     public IActionResult GetProductsVariants()
     {
