@@ -85,6 +85,30 @@ public class ProductController : ControllerBase
         }
     }
 
+    [HttpPut("update/{id}")]
+    public IActionResult UpdateProduct(int id, Product updateProduct)
+    {
+        var product = _context.Products.Find(id);
+
+        if (product == null) {
+            return Ok(new {
+                status = false,
+                message= "Product not found"
+            });
+        } else {
+            
+            product.Name    = updateProduct.Name;
+            product.Price   = updateProduct.Price;
+
+            _context.SaveChanges();
+
+            return Ok(new {
+                status = true,
+                message= "Product has been deleted"
+            });
+        }
+    }
+
     [HttpGet("variants")]
     public IActionResult GetProductsVariants()
     {

@@ -1,11 +1,12 @@
 import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useParams } from 'react-router'
-import { PR_VW_API } from '../utils/api'
+import { useNavigate, useParams } from 'react-router'
+import { PR_UD_API, PR_VW_API } from '../utils/api'
 const EditProduct = () => {
     const params = useParams()
     const { register, reset, setValue, handleSubmit } = useForm()
+    const navigate = useNavigate();
 
     const ViewSingleProduct = async () => {
         try {
@@ -23,7 +24,16 @@ const EditProduct = () => {
     }
 
     const handleEditProduct = async (data) => {
-        console.log(data)
+        try {
+            const response = await axios.put(PR_UD_API + "/" + params.id, data)
+            if (response.data.status == false) {
+                console.log(response.data.message)
+            }
+            // reset(response.data.product)
+            navigate('/')
+        } catch (error) {
+            console.log("Err:", error)
+        }
     }
 
     useEffect(() => {
