@@ -1,0 +1,39 @@
+dynamic type of js
+user obj = {
+name : "Ali",
+email: "email@gmail.com"
+}
+
+static type of ts
+
+type userType = {
+name: String,
+email: String
+}
+
+user obj<userType> = {
+name : "Ali",
+email: "email@gmail.com"
+} // console.log(obj.name) :: // Ali
+
+---------
+
+enum status = ["Active", "Pending", "Inactive"]
+default : "Active"
+-------------------------
+
+http://localhost:3000/projects/1
+
+-> projects (folder name)
+    -> [id] (folder name / details )
+        - page.jsx, tsx
+    page.jsx,tsx
+
+(pages) (folder name)
+    -> projects (folder name)
+    -> employees (folder name)
+    -> tasks (folder name)
+    -> customers (folder name)
+
+
+
